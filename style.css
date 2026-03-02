@@ -1,0 +1,434 @@
+/* === CSS Variables === */
+:root {
+    --primary-color: #ffb6c1; /* Light Pink */
+    --secondary-color: #ffc0cb; /* Pink */
+    --accent-color: #ff69b4; /* Hot Pink */
+    --text-main: #4a4a4a;
+    --text-light: #7a7a7a;
+    --bg-color: #fff0f5; /* Lavender Blush */
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glow-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Outfit', sans-serif;
+}
+
+/* === Global Reset === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-body);
+    color: var(--text-main);
+    overflow: hidden; /* Prevent scrolling, handle by scenes */
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #fffafa 100%);
+}
+
+/* === Hidden Utilities === */
+.hidden {
+    display: none !important;
+}
+
+.hidden-elem {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+.visible-elem {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* === Background Particles & Hearts === */
+#particles-container, #hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Individual particle/heart styles applied via JS */
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticle linear infinite;
+}
+
+.heart {
+    position: absolute;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    opacity: 0.7;
+    animation: floatHeart linear infinite;
+}
+
+@keyframes floatParticle {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+@keyframes floatHeart {
+    0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+    10% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+/* === Screen & Scene Layouts === */
+.screen, .scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease, visibility 1.5s ease, transform 1.5s ease;
+}
+
+.active-scene, .active {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* === Typography & Specifics === */
+.handwritten {
+    font-family: var(--font-heading);
+}
+
+h1, h2.section-title, .hero-name, .end-name, .grand-finale {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+}
+
+.glow-text {
+    color: var(--accent-color);
+    text-shadow: var(--glow-shadow);
+    font-weight: 600;
+}
+
+/* Buttons */
+button {
+    margin-top: 2rem;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Start Screen */
+.start-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+/* === Hero Section === */
+.hero-greeting {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.hero-name-container {
+    margin-top: 3rem;
+}
+
+.hero-name {
+    font-size: 5rem;
+    letter-spacing: 5px;
+    background: linear-gradient(to right, #ff1493, #ff69b4);
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+/* Pulse Animation for Name */
+.pulse {
+    animation: heartBeat 2s infinite;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+/* === Message Section === */
+.quote-container {
+    margin-bottom: 2rem;
+}
+
+.typewriter-quote {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1.5;
+    color: var(--accent-color);
+    position: relative;
+    display: inline-block;
+    border-right: 3px solid var(--accent-color);
+    white-space: pre-wrap;
+    overflow: hidden;
+    margin: 0 auto;
+    animation: blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent-color); }
+}
+
+.message-body p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+.message-body {
+    margin-bottom: 2rem;
+}
+
+/* === Feelings Cards Section === */
+.section-title {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    width: 280px;
+    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.feelings-footer p {
+    font-size: 1.2rem;
+}
+
+/* === Wish Section === */
+.wish-content {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+    margin-bottom: 2rem;
+    z-index: 2;
+    max-width: 500px;
+}
+
+.wish-list {
+    list-style: none;
+    text-align: left;
+    margin: 1.5rem 0;
+}
+
+.wish-list li {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.bullet {
+    margin-right: 15px;
+    font-size: 1.5rem;
+}
+
+.fireworks-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Cake & Candle */
+.cake-container {
+    position: relative;
+    height: 100px;
+    margin: 1rem 0;
+    z-index: 2;
+}
+
+.candle {
+    width: 15px;
+    height: 60px;
+    background: linear-gradient(#fff, #fbd3e9);
+    border-radius: 3px;
+    position: relative;
+    box-shadow: inset -2px 0 2px rgba(0,0,0,0.1);
+}
+
+.flame {
+    width: 15px;
+    height: 30px;
+    background: #FFD700;
+    border-radius: 50% 50% 20% 20%;
+    position: absolute;
+    top: -25px;
+    left: 0;
+    box-shadow: 0 0 20px #FFD700, 0 0 40px #FF8C00;
+    animation: flicker 0.1s infinite alternate;
+    transform-origin: bottom center;
+}
+
+.flame.blown-out {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes flicker {
+    0% { transform: scale(1) rotate(-1deg); box-shadow: 0 0 20px #FFD700, 0 0 40px #FF8C00; }
+    100% { transform: scale(1.05) rotate(1deg); box-shadow: 0 0 25px #FFD700, 0 0 50px #FF8C00; }
+}
+
+/* === Finale Section === */
+.finale-name {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.spacing {
+    margin-bottom: 1.5rem;
+}
+
+.finale-text {
+    font-size: 1.3rem;
+    line-height: 1.7;
+}
+
+.grand-finale {
+    font-size: 3rem;
+    margin-top: 3rem;
+    animation: bounce 2s infinite;
+}
+
+.uppercase {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.rose-petals-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Scene transitions */
+.scene.zoom-in {
+    transform: scale(1.5);
+    opacity: 0;
+}
+
+/* === End Screen === */
+.white-out {
+    background: #ffffff;
+    z-index: 50; /* Topmost */
+}
+
+.end-content {
+    opacity: 0;
+    animation: fadeInSlideUp 2s ease forwards;
+    animation-delay: 1s;
+}
+
+.end-text {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.final-pulse {
+    font-size: 4rem;
+    background: linear-gradient(to right, #ff69b4, #ff1493);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: heartBeat 3s infinite;
+}
+
+@keyframes fadeInSlideUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .section-title, .hero-name { font-size: 3rem; }
+    .hero-greeting { font-size: 2.5rem; }
+    .typewriter-quote { font-size: 1.8rem; }
+    .card { width: 100%; max-width: 320px; margin-bottom: 1rem; }
+    .grand-finale { font-size: 2rem; }
+    .final-pulse { font-size: 2.5rem; }
+}

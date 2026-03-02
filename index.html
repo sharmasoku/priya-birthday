@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Priya 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Outfit:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div id="particles-container"></div>
+    <div id="hearts-container"></div>
+
+    <!-- Audio Player (Hidden) -->
+    <audio id="bg-music" loop>
+        <!-- User needs to put a music file here -->
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Initial Play Button (to bypass autoplay restrictions) -->
+    <div id="start-screen" class="screen active">
+        <div class="start-content">
+            <h1 class="start-title">A Special Surprise Wait For You...</h1>
+            <button id="start-btn">Open It 💖</button>
+        </div>
+    </div>
+
+    <!-- Main Content Flow -->
+    <div id="main-content" class="hidden">
+        
+        <!-- Opening / Hero Section -->
+        <section id="hero" class="scene active-scene">
+            <div class="hero-content">
+                <h2 class="handwritten hero-greeting">Hey Priya...</h2>
+                <div class="hero-text-wrapper">
+                    <p class="hero-p">Aaj ka din thoda sa extra special hai...</p>
+                    <p class="hero-p">kyunki aaj tumhari birthday hai 🥹🎂</p>
+                    <p class="hero-p mt-4">Tumhari ek smile hi kaafi hoti hai</p>
+                    <p class="hero-p">pure din ko bright banaane ke liye ✨</p>
+                </div>
+                <div class="hero-name-container">
+                    <h1 class="hero-name pulse">PRIYA 💕</h1>
+                </div>
+            </div>
+            <button class="next-btn" onclick="nextScene('hero', 'message')">Continue 🌸</button>
+        </section>
+
+        <!-- Birthday Message Section -->
+        <section id="message" class="scene">
+            <div class="quote-container">
+                <blockquote class="typewriter-quote">
+                    "Tum sirf ek naam nahi ho,<br>
+                    tum ek <span class="glow">feeling</span> ho...<br>
+                    jo bina bole bhi sab keh jaati hai."
+                </blockquote>
+            </div>
+            <div class="message-body hidden-elem">
+                <p>Priya,</p>
+                <p>tumhari laugh, tumhari baatein,</p>
+                <p>aur tumhari presence —</p>
+                <p>sab kuch simple hote hue bhi</p>
+                <p class="highlight glow-text">bahut special hai 💖</p>
+            </div>
+            <button class="next-btn hidden-elem" onclick="nextScene('message', 'feelings')">Read More 💫</button>
+        </section>
+
+        <!-- Little Feelings Section -->
+        <section id="feelings" class="scene">
+            <h2 class="section-title">Tumhare Saath... 🌷</h2>
+            <div class="cards-container">
+                <div class="card card-1">
+                    <div class="card-icon">🌸</div>
+                    <p>Har moment thoda zyada beautiful lagta hai</p>
+                </div>
+                <div class="card card-2">
+                    <div class="card-icon">💫</div>
+                    <p>Har silence bhi comfortable hoti hai</p>
+                </div>
+                <div class="card card-3">
+                    <div class="card-icon">💝</div>
+                    <p>Aur har smile dil se nikalti hai</p>
+                </div>
+            </div>
+            <div class="feelings-footer hidden-elem">
+                <p>Tumhe dekh ke lagta hai</p>
+                <p class="highlight glow-text">some people are meant to be cherished.</p>
+            </div>
+            <button class="next-btn hidden-elem" onclick="nextScene('feelings', 'wish')">Make a Wish 🎂</button>
+        </section>
+
+        <!-- Special Wish Section -->
+        <section id="wish" class="scene">
+            <div class="fireworks-bg"></div>
+            <h2 class="section-title">On Your Birthday 🌟</h2>
+            <div class="wish-content">
+                <p class="wish-intro">I wish tumhari life mein:</p>
+                <ul class="wish-list">
+                    <li><span class="bullet">🌈</span> Khushiyaan unlimited ho</li>
+                    <li><span class="bullet">✨</span> Dreams high ho</li>
+                    <li><span class="bullet">😌</span> Stress minimum ho</li>
+                    <li><span class="bullet">💖</span> Aur smile hamesha real ho</li>
+                </ul>
+                <div class="wish-footer">
+                    <p>Aur haan...</p>
+                    <p>jo bhi tum chaho,</p>
+                    <p class="highlight glow-text">life usse thoda aur better bana de 💫</p>
+                </div>
+            </div>
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="next-btn" onclick="nextScene('wish', 'finale')">Blow the Candle 🎈</button>
+        </section>
+
+        <!-- Final Note Section -->
+        <section id="finale" class="scene finale-zoom">
+            <div class="rose-petals-bg"></div>
+            <div class="finale-content">
+                <p class="finale-name">Priya,</p>
+                <p class="finale-text spacing">ye website ek chhota sa gesture hai<br>par feelings <span class="glow">pure dil se</span> hai ❤️</p>
+                <p class="finale-text spacing">Aaj ka din sirf tumhara hai,<br>isse enjoy karo, smile karo,<br>aur yaad rakho —</p>
+                <p class="finale-text highlight glow-text uppercase spacing">tum bahut special ho.</p>
+                <h1 class="grand-finale">🎂💖 Happy Birthday once again 💖🎂</h1>
+            </div>
+            <button class="next-btn fade-end-btn" onclick="nextScene('finale', 'end-screen')">Finish ✨</button>
+        </section>
+
+        <!-- End Screen -->
+        <section id="end-screen" class="scene white-out">
+            <div class="end-content">
+                <p class="end-text">Made with 💕, emotions & lots of smiles</p>
+                <h2 class="end-name final-pulse">just for Priya ✨</h2>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
